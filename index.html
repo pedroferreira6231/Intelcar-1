@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Intelcar 2.7</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="app">
+    <img id="mockup" src="intelcar-oficial.jpg" alt="Intelcar 2.7">
+
+    <button class="hotspot" id="btn-power" onclick="alternarTudo()" aria-label="Ligar ou desligar tudo"></button>
+    <button class="hotspot" id="btn-ai" onclick="falarAI()" aria-label="AI"></button>
+    <button class="hotspot" id="btn-ai-plus" onclick="aiPlus()" aria-label="AI Plus"></button>
+    <button class="hotspot" id="btn-microfone" onclick="alternarModulo('microfone')" aria-label="Microfone"></button>
+    <button class="hotspot" id="btn-velocidade" onclick="falarVelocidade()" aria-label="Velocidade"></button>
+    <button class="hotspot" id="btn-destino" onclick="definirDestinoManual()" aria-label="Destino"></button>
+    <button class="hotspot" id="btn-gps" onclick="alternarModulo('gps')" aria-label="GPS interno"></button>
+    <button class="hotspot" id="btn-maps" onclick="abrirGoogleMaps()" aria-label="Google Maps"></button>
+    <button class="hotspot" id="btn-alerta-velocidade" onclick="alternarModulo('alertaVelocidade')" aria-label="Alerta velocidade"></button>
+    <button class="hotspot" id="btn-alerta-distracao" onclick="alternarModulo('alertaDistracao')" aria-label="Alerta distração"></button>
+    <button class="hotspot" id="btn-alerta-cansaco" onclick="alternarModulo('alertaCansaco')" aria-label="Alerta cansaço"></button>
+    <button class="hotspot" id="btn-alerta-meteo" onclick="alternarModulo('alertaMeteo')" aria-label="Alerta meteo"></button>
+    <button class="hotspot" id="btn-alerta-conducao" onclick="alternarModulo('alertaConducao')" aria-label="Alerta condução perigosa"></button>
+    <button class="hotspot" id="btn-config" onclick="abrirConfiguracoes()" aria-label="Configurações"></button>
+    <button class="hotspot" id="btn-sos" onclick="ativarSOS()" aria-label="Alerta SOS"></button>
+
+    <div class="status-pill" id="status-geral">ATIVO</div>
+    <div class="speed-box" id="speedBox">0 km/h</div>
+    <div class="log-box" id="logBox">Intelcar pronta</div>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/gps.js"></script>
+  <script src="js/maps.js"></script>
+  <script src="js/voice.js"></script>
+  <script src="js/alerts.js"></script>
+</body>
+</html>
