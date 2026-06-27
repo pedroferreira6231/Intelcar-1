@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Intelcar 2.7</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    background: #020407;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+  }
+
+  .app {
+    position: relative;
+    width: 100vw;
+    max-width: 1536px;
+    margin: 0 auto;
+    aspect-ratio: 3 / 2;
+    background-image: url("intelcar-oficial.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top center;
+  }
+
+  .hotspot {
+    position: absolute;
+    border: 0;
+    background: transparent;
+    color: transparent;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .hotspot:active {
+    outline: 2px solid rgba(0,255,80,.7);
+    border-radius: 12px;
+    background: rgba(0,255,80,.08);
+  }
+
+  .portrait-warning {
+    display: none;
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    padding: 10px;
+    border-radius: 12px;
+    background: rgba(0,0,0,.75);
+    color: #00ff66;
+    font-size: 14px;
+    text-align: center;
+    z-index: 10;
+    border: 1px solid #00ff66;
+  }
+
+  @media (orientation: portrait) {
+    .app {
+      width: 100vw;
+      aspect-ratio: 3 / 2;
+      margin-top: 70px;
+    }
+    .portrait-warning { display: block; }
+  }
+
+  /* Hotspots baseados na imagem oficial */
+  #btn-ligar { left: 1.2%; top: 16.2%; width: 15.8%; height: 26.8%; }
+  #btn-velocidade { left: 17.8%; top: 16.2%; width: 15.3%; height: 26.8%; }
+  #btn-microfone { left: 34.0%; top: 16.2%; width: 15.3%; height: 26.8%; }
+  #btn-destino { left: 50.2%; top: 16.2%; width: 15.3%; height: 26.8%; }
+  #btn-gps { left: 66.2%; top: 16.2%; width: 15.3%; height: 26.8%; }
+  #btn-maps { left: 82.4%; top: 16.2%; width: 16.2%; height: 26.8%; }
+
+  #btn-ai-plus { left: 1.2%; top: 44.7%; width: 15.8%; height: 24.7%; }
+  #btn-alerta-velocidade { left: 17.8%; top: 44.7%; width: 15.3%; height: 24.7%; }
+  #btn-alerta-distracao { left: 34.0%; top: 44.7%; width: 15.3%; height: 24.7%; }
+  #btn-alerta-cansaco { left: 50.2%; top: 44.7%; width: 15.3%; height: 24.7%; }
+  #btn-alerta-meteo { left: 66.2%; top: 44.7%; width: 15.3%; height: 24.7%; }
+  #btn-alerta-conducao { left: 82.4%; top: 44.7%; width: 16.2%; height: 24.7%; }
+
+  #btn-config { left: 1.2%; top: 71.2%; width: 48.0%; height: 15.8%; }
+  #btn-sos { left: 50.2%; top: 71.2%; width: 48.4%; height: 15.8%; }
+  #btn-som { left: 78%; top: 88%; width: 20%; height: 8%; }
+</style>
+</head>
+<body>
+
+<div class="app" aria-label="Intelcar 2.7 interface oficial">
+  <button class="hotspot" id="btn-ligar" onclick="acao('Ligar / Desligar')">Ligar / Desligar</button>
+  <button class="hotspot" id="btn-velocidade" onclick="acao('Velocidade')">Velocidade</button>
+  <button class="hotspot" id="btn-microfone" onclick="acao('Microfone')">Microfone</button>
+  <button class="hotspot" id="btn-destino" onclick="acao('Destino')">Destino</button>
+  <button class="hotspot" id="btn-gps" onclick="acao('GPS interno')">GPS interno</button>
+  <button class="hotspot" id="btn-maps" onclick="abrirMaps()">Google Maps</button>
+
+  <button class="hotspot" id="btn-ai-plus" onclick="acao('AI Plus')">AI Plus</button>
+  <button class="hotspot" id="btn-alerta-velocidade" onclick="acao('Alerta velocidade')">Alerta velocidade</button>
+  <button class="hotspot" id="btn-alerta-distracao" onclick="acao('Alerta distração')">Alerta distração</button>
+  <button class="hotspot" id="btn-alerta-cansaco" onclick="acao('Alerta cansaço')">Alerta cansaço</button>
+  <button class="hotspot" id="btn-alerta-meteo" onclick="acao('Alerta meteo')">Alerta meteo</button>
+  <button class="hotspot" id="btn-alerta-conducao" onclick="acao('Alerta condução perigosa')">Alerta condução perigosa</button>
+
+  <button class="hotspot" id="btn-config" onclick="acao('Configurações')">Configurações</button>
+  <button class="hotspot" id="btn-sos" onclick="acao('Alerta SOS')">Alerta SOS</button>
+  <button class="hotspot" id="btn-som" onclick="acao('Som ativo')">Som ativo</button>
+</div>
+
+<div class="portrait-warning">Para ficar igual à maquete oficial, vira o telemóvel na horizontal.</div>
+
+<script>
+function acao(nome) {
+  alert('Intelcar 2.7: ' + nome);
+}
+
+function abrirMaps() {
+  window.open('https://www.google.com/maps', '_blank');
+}
+</script>
+
+</body>
+</html>
