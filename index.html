@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Intelcar 2.7</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<main id="app">
+  <img id="mockup" src="intelcar-oficial.jpg" alt="Intelcar 2.7">
+
+  <button class="hotspot" id="btn-power" onclick="alternarTudo()"></button>
+  <button class="hotspot" id="btn-ai" onclick="falarAI()"></button>
+  <button class="hotspot" id="btn-ai-plus" onclick="aiPlus()"></button>
+  <button class="hotspot" id="btn-microfone" onclick="alternarModulo('microfone')"></button>
+  <button class="hotspot" id="btn-velocidade" onclick="falarVelocidade()"></button>
+  <button class="hotspot" id="btn-destino" onclick="definirDestinoManual()"></button>
+  <button class="hotspot" id="btn-gps" onclick="alternarModulo('gps')"></button>
+  <button class="hotspot" id="btn-maps" onclick="abrirGoogleMaps()"></button>
+  <button class="hotspot" id="btn-alerta-velocidade" onclick="alternarModulo('alertaVelocidade')"></button>
+  <button class="hotspot" id="btn-alerta-distracao" onclick="alternarModulo('alertaDistracao')"></button>
+  <button class="hotspot" id="btn-alerta-cansaco" onclick="alternarModulo('alertaCansaco')"></button>
+  <button class="hotspot" id="btn-alerta-meteo" onclick="alternarModulo('alertaMeteo')"></button>
+  <button class="hotspot" id="btn-alerta-conducao" onclick="alternarModulo('alertaConducao')"></button>
+  <button class="hotspot" id="btn-config" onclick="abrirConfiguracoes()"></button>
+  <button class="hotspot" id="btn-sos" onclick="ativarSOS()"></button>
+
+  <div class="status-pill" id="status-geral">ATIVO</div>
+  <div class="speed-box" id="speedBox">0 km/h</div>
+  <div class="log-box" id="logBox">Intelcar pronta</div>
+</main>
+
+<script src="app.js"></script>
+<script src="gps.js"></script>
+<script src="maps.js"></script>
+<script src="voice.js"></script>
+<script src="alerts.js"></script>
+</body>
+</html>
