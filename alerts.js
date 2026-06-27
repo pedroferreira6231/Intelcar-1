@@ -1,0 +1,11 @@
+let ultimoAlertaVelocidade=0;
+const limiteVelocidadePadrao=90;
+
+function verificarAlertasVelocidade(v){
+if(!estado.alertaVelocidade||estado.modoEspera)return;
+const agora=Date.now();
+if(v>limiteVelocidadePadrao&&agora-ultimoAlertaVelocidade>20000){
+ultimoAlertaVelocidade=agora;
+falar("Atenção. Velocidade acima do limite definido.");
+}
+}
