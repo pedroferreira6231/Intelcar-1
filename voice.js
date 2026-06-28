@@ -83,22 +83,24 @@ function processarComando(textoOriginal) {
   log("Ouvi: " + textoOriginal);
 
   if (
-    texto.includes("liga tudo") ||
-    texto.includes("intelcar liga") ||
-    texto.includes("intelcar acorda")
-  ) {
-    ligarTudo();
-    return;
-  }
+  texto.includes("desliga tudo") ||
+  texto.includes("desligar tudo") ||
+  texto.includes("intelcar desliga") ||
+  texto.includes("intelcar dorme") ||
+  texto.includes("modo espera")
+) {
+  desligarTudo();
+  return;
+}
 
-  if (
-    texto.includes("desliga tudo") ||
-    texto.includes("intelcar dorme") ||
-    texto.includes("modo espera")
-  ) {
-    desligarTudo();
-    return;
-  }if (estado.modoEspera) {
+if (
+  texto.includes("liga tudo") ||
+  texto.includes("intelcar liga") ||
+  texto.includes("intelcar acorda")
+) {
+  ligarTudo();
+  return;
+}if (estado.modoEspera) {
     log("Intelcar em modo de espera.");
     return;
   }
