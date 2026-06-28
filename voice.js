@@ -27,3 +27,12 @@ function iniciarMicrofone() {
   recognition.continuous = true;
   recognition.interimResults = false;
   recognition.maxAlternatives = 1;
+recognition.onstart = function () {
+    log("Microfone ativo. Estou a ouvir.");
+  };
+
+  recognition.onresult = function (event) {
+    const ultimo = event.results[event.results.length - 1];
+    const texto = ultimo[0].transcript.trim();
+    processarComando(texto);
+  };
