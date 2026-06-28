@@ -35,4 +35,33 @@ recognition.onstart = function () {
     const ultimo = event.results[event.results.length - 1];
     const texto = ultimo[0].transcript.trim();
     processarComando(texto);
+  };recognition.onerror = function (event) {
+    log("Erro no microfone: " + event.error);
+
+    if (event.error === "not-allowed") {
+      microfoneLigado = false;
+      reiniciarMicrofone = false;
+      falar("Permissão do microfone recusada.");
+    }
   };
+
+  recognition.onend = function () {
+    recognition = null;
+
+    if (reiniciarMicrofone && estado.microfone) {
+      setTimeout(function () {
+        try {
+          criarReconhecimento();
+        } catch (e) {
+          log("Falha ao reiniciar microfone.");
+        }
+      }, 900);
+    }
+  };
+
+  try {
+    recognition.start();
+  } catch (e) {
+    log("Microfone já estava a iniciar.");
+  }
+}
