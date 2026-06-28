@@ -158,5 +158,16 @@ function processarComando(textoOriginal) {
   if (texto.includes("sos")) {
     ativarSOS();
     return;
+  }if (
+    texto.includes("olá intelcar") ||
+    texto.includes("ola intelcar") ||
+    texto.includes("olá intercar") ||
+    texto.includes("ola intercar")
+  ) {
+    falar("Estou aqui. Diz destino, velocidade ou desliga tudo.");
+    return;
   }
+
+  log("Comando não reconhecido: " + textoOriginal);
+}
 
