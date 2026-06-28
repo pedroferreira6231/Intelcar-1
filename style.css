@@ -72,7 +72,19 @@ body {
   border: 1px solid rgba(0,255,100,0.8);
   font-size: 12px;
   font-weight: bold;
-}.log-box {
+}.speed-box {
+  position: absolute;
+  right: 3%;
+  top: 3%;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(0,180,255,0.14);
+  color: white;
+  border: 1px solid rgba(0,180,255,0.8);
+  font-size: 12px;
+  font-weight: bold;
+}
+.log-box {
   position: absolute;
   left: 50%;
   bottom: 1.5%;
