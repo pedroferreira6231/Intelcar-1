@@ -129,4 +129,34 @@ function processarComando(textoOriginal) {
   ) {
     falarVelocidade();
     return;
+  }if (texto.includes("desliga gps")) {
+    estado.gps = false;
+    pararGPS();
+    falar("GPS interno desligado.");
+    return;
   }
+
+  if (texto.includes("liga gps")) {
+    estado.gps = true;
+    iniciarGPS();
+    falar("GPS interno ativo.");
+    return;
+  }
+
+  if (texto.includes("desliga alerta velocidade")) {
+    estado.alertaVelocidade = false;
+    falar("Alerta de velocidade desligado.");
+    return;
+  }
+
+  if (texto.includes("liga alerta velocidade")) {
+    estado.alertaVelocidade = true;
+    falar("Alerta de velocidade ativo.");
+    return;
+  }
+
+  if (texto.includes("sos")) {
+    ativarSOS();
+    return;
+  }
+
