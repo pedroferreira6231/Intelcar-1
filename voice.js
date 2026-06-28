@@ -64,4 +64,17 @@ recognition.onstart = function () {
   } catch (e) {
     log("Microfone já estava a iniciar.");
   }
+}function pararMicrofone() {
+  reiniciarMicrofone = false;
+  microfoneLigado = false;
+  estado.microfone = false;
+
+  if (recognition) {
+    try {
+      recognition.stop();
+    } catch (e) {}
+  }
+
+  recognition = null;
+  log("Microfone desligado.");
 }
