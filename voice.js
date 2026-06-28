@@ -98,4 +98,19 @@ function processarComando(textoOriginal) {
   ) {
     desligarTudo();
     return;
+  }if (estado.modoEspera) {
+    log("Intelcar em modo de espera.");
+    return;
+  }
+
+  if (texto.startsWith("destino ")) {
+    const destino = texto.replace("destino", "").trim();
+
+    if (destino.length > 0) {
+      definirDestino(destino);
+    } else {
+      falar("Diz o destino. Por exemplo: destino Fátima.");
+    }
+
+    return;
   }
