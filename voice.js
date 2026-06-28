@@ -113,4 +113,20 @@ function processarComando(textoOriginal) {
     }
 
     return;
+  }if (
+    texto.includes("abrir google maps") ||
+    texto.includes("abre google maps") ||
+    texto.includes("iniciar navegação")
+  ) {
+    abrirGoogleMaps();
+    return;
+  }
+
+  if (
+    texto.includes("qual é a velocidade") ||
+    texto.includes("diz a velocidade") ||
+    texto.includes("velocidade atual")
+  ) {
+    falarVelocidade();
+    return;
   }
