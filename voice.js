@@ -78,3 +78,24 @@ recognition.onstart = function () {
   recognition = null;
   log("Microfone desligado.");
 }
+function processarComando(textoOriginal) {
+  const texto = textoOriginal.toLowerCase().trim();
+  log("Ouvi: " + textoOriginal);
+
+  if (
+    texto.includes("liga tudo") ||
+    texto.includes("intelcar liga") ||
+    texto.includes("intelcar acorda")
+  ) {
+    ligarTudo();
+    return;
+  }
+
+  if (
+    texto.includes("desliga tudo") ||
+    texto.includes("intelcar dorme") ||
+    texto.includes("modo espera")
+  ) {
+    desligarTudo();
+    return;
+  }
