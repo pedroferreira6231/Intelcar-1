@@ -18,4 +18,12 @@ function iniciarMicrofone() {
   reiniciarMicrofone = true;
 
   criarReconhecimento();
-}
+}function criarReconhecimento() {
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  recognition = new SpeechRecognition();
+  recognition.lang = "pt-PT";
+  recognition.continuous = true;
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
