@@ -13,4 +13,9 @@ function iniciarMicrofone() {
   if (microfoneLigado) {
     falar("Microfone já está ativo.");
     return;
-  }
+  }estado.microfone = true;
+  microfoneLigado = true;
+  reiniciarMicrofone = true;
+
+  criarReconhecimento();
+}
