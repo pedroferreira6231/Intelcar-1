@@ -43,29 +43,30 @@ geral.style.color="#00ff66";
 geral.style.borderColor="rgba(0,255,100,0.8)";
 geral.style.background="rgba(0,255,80,0.14)";
 }
-atualizarLedsBotoes();
 }
 
-function definirLed(id,ligado){
-const el=document.getElementById(id);
-if(!el)return;
-el.classList.toggle("off",!ligado);
+
+function definirLed(id, ligado){
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.classList.toggle("off", !ligado);
 }
 
 function atualizarLedsBotoes(){
-definirLed("led-power",!estado.modoEspera&&estado.tudoLigado);
-definirLed("led-microfone",estado.microfone);
-definirLed("led-gps",estado.gps);
-definirLed("led-ai-plus",true);
-definirLed("led-alerta-velocidade",estado.alertaVelocidade);
-definirLed("led-alerta-distracao",estado.alertaDistracao);
-definirLed("led-alerta-cansaco",estado.alertaCansaco);
-definirLed("led-alerta-meteo",estado.alertaMeteo);
-definirLed("led-alerta-conducao",estado.alertaConducao);
-// Estes três não desligam módulos, ficam sempre verdes como indicação visual.
-definirLed("led-velocidade",true);
-definirLed("led-destino",true);
-definirLed("led-maps",true);
+  definirLed("led-power", !estado.modoEspera && estado.tudoLigado);
+  definirLed("led-microfone", estado.microfone && !estado.modoEspera);
+  definirLed("led-gps", estado.gps && !estado.modoEspera);
+  definirLed("led-alerta-velocidade", estado.alertaVelocidade && !estado.modoEspera);
+  definirLed("led-alerta-distracao", estado.alertaDistracao && !estado.modoEspera);
+  definirLed("led-alerta-cansaco", estado.alertaCansaco && !estado.modoEspera);
+  definirLed("led-alerta-meteo", estado.alertaMeteo && !estado.modoEspera);
+  definirLed("led-alerta-conducao", estado.alertaConducao && !estado.modoEspera);
+
+  // Estes botões são de ação, não ligam/desligam módulo. Ficam verdes.
+  definirLed("led-velocidade", true);
+  definirLed("led-destino", true);
+  definirLed("led-maps", true);
+  definirLed("led-ai-plus", true);
 }
 
 function falar(texto,urgente=false){
@@ -86,16 +87,8 @@ window.speechSynthesis.speak(msg);
 log(texto);
 }
 
-function botaoPrincipal(){
-if(estado.modoEspera || !estado.tudoLigado){
-ligarTudo();
-} else {
-desligarTudo();
-}
-}
-
 function alternarTudo(){
-botaoPrincipal();
+if(estado.modoEspera){ligarTudo();}else{desligarTudo();}
 }
 
 function desligarTudo(){
