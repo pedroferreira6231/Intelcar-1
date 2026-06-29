@@ -29,7 +29,12 @@
 
   <div class="status-pill" id="status-geral">ATIVO</div>
   <div class="speed-box" id="speedBox">0 km/h</div>
-  <div class="log-box" id="logBox">Intelcar pronta</div>
+  <div class="log-box" id="logBox">Intelcar pronta</div><div id="aiBox" class="ai-box">
+  <input id="aiInput" type="text" placeholder="Perguntar à Intelcar...">
+  <button onclick="enviarPerguntaAI()">Enviar</button>
+  <button onclick="fecharAIBox()">X</button>
+  <div id="aiResposta"></div>
+  </div>
 </main>
 
 <script src="app.js"></script>
