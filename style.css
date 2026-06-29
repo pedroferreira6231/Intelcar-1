@@ -175,3 +175,40 @@ html, body {
   padding: 9px 11px;
   font-size: 14px;
 }
+
+
+/* Intelcar 2.9.4 — LED limpo
+   Não cria texto nem botões novos. Apenas cobre o LED original da imagem
+   no mesmo sítio, um pouco maior, mudando verde/vermelho. */
+.led-dot {
+  position: absolute;
+  width: 1.55%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: #00ff55;
+  box-shadow: 0 0 8px rgba(0,255,80,0.95), 0 0 3px rgba(255,255,255,0.7) inset;
+  z-index: 32;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.led-dot.off {
+  background: #ff2020;
+  box-shadow: 0 0 8px rgba(255,0,0,0.95), 0 0 3px rgba(255,255,255,0.55) inset;
+}
+
+/* primeira linha: LED antes de ATIVO */
+#led-power { left: 11.4%; top: 35.6%; }
+#led-velocidade { left: 28.4%; top: 35.6%; }
+#led-microfone { left: 44.9%; top: 35.6%; }
+#led-destino { left: 60.9%; top: 35.6%; }
+#led-gps { left: 73.6%; top: 35.6%; }
+#led-maps { left: 90.2%; top: 35.6%; }
+
+/* segunda linha: LED antes de ATIVO */
+#led-ai-plus { left: 11.4%; top: 64.0%; }
+#led-alerta-velocidade { left: 28.3%; top: 64.0%; }
+#led-alerta-distracao { left: 44.8%; top: 64.0%; }
+#led-alerta-cansaco { left: 61.0%; top: 64.0%; }
+#led-alerta-meteo { left: 73.6%; top: 64.0%; }
+#led-alerta-conducao { left: 90.2%; top: 64.0%; }
