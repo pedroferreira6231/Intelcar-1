@@ -30,7 +30,7 @@ console.log("[Intelcar]",t);
 
 function atualizarEstadoVisual(){
 const geral=document.getElementById("status-geral");
-if(!geral)return;
+if(geral){
 if(estado.modoEspera){
 geral.textContent="ESPERA";
 geral.style.color="#ff3333";
@@ -42,6 +42,27 @@ geral.style.color="#00ff66";
 geral.style.borderColor="rgba(0,255,100,0.8)";
 geral.style.background="rgba(0,255,80,0.14)";
 }
+}
+atualizarLedsBotoes();
+}
+
+function definirLed(id,ligado){
+const btn=document.getElementById(id);
+if(!btn)return;
+btn.classList.toggle("ligado",!!ligado);
+btn.classList.toggle("desligado",!ligado);
+}
+
+function atualizarLedsBotoes(){
+definirLed("btn-power",!estado.modoEspera&&estado.tudoLigado);
+definirLed("btn-microfone",estado.microfone);
+definirLed("btn-gps",estado.gps);
+definirLed("btn-ai-plus",estado.aiPlus);
+definirLed("btn-alerta-velocidade",estado.alertaVelocidade);
+definirLed("btn-alerta-distracao",estado.alertaDistracao);
+definirLed("btn-alerta-cansaco",estado.alertaCansaco);
+definirLed("btn-alerta-meteo",estado.alertaMeteo);
+definirLed("btn-alerta-conducao",estado.alertaConducao);
 }
 
 function falar(texto,urgente=false){
@@ -103,6 +124,7 @@ if(!(nome in estado))return;
 estado[nome]=!estado[nome];
 if(nome==="gps"){estado[nome]?iniciarGPS():pararGPS();}
 if(nome==="microfone"){estado[nome]?iniciarMicrofone():pararMicrofone();}
+atualizarEstadoVisual();
 falar(nome+" "+(estado[nome]?"ativo":"desligado"));
 }
 
@@ -115,6 +137,7 @@ if(estado.modoEspera){
 ligarTudo();
 }
 estado.ai=true;
+atualizarEstadoVisual();
 if(estado.microfone){
 iniciarMicrofone();
 }
