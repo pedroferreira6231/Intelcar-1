@@ -116,3 +116,29 @@ body {
     font-size: 16px;
   }
 }
+.ai-box {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  transform: translateX(-50%);
+  width: 70%;
+  background: rgba(0,0,0,0.88);
+  border: 1px solid #00ccff;
+  border-radius: 14px;
+  padding: 10px;
+  color: white;
+  display: none;
+  z-index: 20;
+}
+
+.ai-box input {
+  width: 60%;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+}
+
+.ai-box button {
+  padding: 8px 10px;
+  margin-left: 5px;
+}
