@@ -160,13 +160,32 @@ if (
   if (texto.includes("sos")) {
     ativarSOS();
     return;
-  }if (
+  }
+  if (
     texto.includes("olá intelcar") ||
     texto.includes("ola intelcar") ||
     texto.includes("olá intercar") ||
     texto.includes("ola intercar")
   ) {
     falar("Estou aqui. Diz destino, velocidade ou desliga tudo.");
+    return;
+  }  if (texto.includes("qual é o destino")) {
+    const destino = estado.destino || localStorage.getItem("destinoIntelcar");
+    if (destino) {
+      falar("O destino atual é " + destino + ".");
+    } else {
+      falar("Ainda não definiste nenhum destino.");
+    }
+    return;
+  }
+
+  if (texto.includes("que alertas estão ativos")) {
+    falar("Estão ativos os alertas de velocidade, distração, cansaço, meteorologia e condução perigosa.");
+    return;
+  }
+
+  if (texto.includes("estás aí") || texto.includes("estás pronta")) {
+    falar("Sim. Intelcar ativa e pronta para ajudar na viagem.");
     return;
   }
 
