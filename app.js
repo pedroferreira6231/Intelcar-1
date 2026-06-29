@@ -137,7 +137,7 @@ alert("SOS será configurado numa próxima fase.");
   let resposta = "Ainda não sei responder a essa pergunta.";
 
   if (pergunta.toLowerCase().includes("velocidade")) {
-    resposta = "A velocidade atual é " + velocidadeAtual + " quilómetros por hora.";
+  resposta = "A velocidade atual é " + Math.round(estado.velocidadeAtual) + " quilómetros por hora.";
   } else if (pergunta.toLowerCase().includes("destino")) {
     resposta = estado.destino
       ? "O destino atual é " + estado.destino + "."
