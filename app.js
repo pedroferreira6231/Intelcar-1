@@ -18,6 +18,7 @@ destino:localStorage.getItem("destinoIntelcar")||""
 window.addEventListener("load",()=>{
 log("Intelcar pronta. Sistemas ativos.");
 atualizarEstadoVisual();
+atualizarLedsBotoes();
 iniciarGPS();
 // Na versão web, o microfone pode exigir toque do utilizador.
 });
@@ -42,6 +43,29 @@ geral.style.color="#00ff66";
 geral.style.borderColor="rgba(0,255,100,0.8)";
 geral.style.background="rgba(0,255,80,0.14)";
 }
+atualizarLedsBotoes();
+}
+
+function definirLed(id,ligado){
+const el=document.getElementById(id);
+if(!el)return;
+el.classList.toggle("off",!ligado);
+}
+
+function atualizarLedsBotoes(){
+definirLed("led-power",!estado.modoEspera&&estado.tudoLigado);
+definirLed("led-microfone",estado.microfone);
+definirLed("led-gps",estado.gps);
+definirLed("led-ai-plus",true);
+definirLed("led-alerta-velocidade",estado.alertaVelocidade);
+definirLed("led-alerta-distracao",estado.alertaDistracao);
+definirLed("led-alerta-cansaco",estado.alertaCansaco);
+definirLed("led-alerta-meteo",estado.alertaMeteo);
+definirLed("led-alerta-conducao",estado.alertaConducao);
+// Estes três não desligam módulos, ficam sempre verdes como indicação visual.
+definirLed("led-velocidade",true);
+definirLed("led-destino",true);
+definirLed("led-maps",true);
 }
 
 function falar(texto,urgente=false){
@@ -62,8 +86,16 @@ window.speechSynthesis.speak(msg);
 log(texto);
 }
 
+function botaoPrincipal(){
+if(estado.modoEspera || !estado.tudoLigado){
+ligarTudo();
+} else {
+desligarTudo();
+}
+}
+
 function alternarTudo(){
-if(estado.modoEspera){ligarTudo();}else{desligarTudo();}
+botaoPrincipal();
 }
 
 function desligarTudo(){
@@ -79,6 +111,7 @@ estado.alertaConducao=false;
 estado.microfone=true;
 pararGPS();
 atualizarEstadoVisual();
+atualizarLedsBotoes();
 falar("Intelcar em modo de espera.");
 }
 
@@ -94,6 +127,7 @@ estado.alertaCansaco=true;
 estado.alertaMeteo=true;
 estado.alertaConducao=true;
 atualizarEstadoVisual();
+atualizarLedsBotoes();
 iniciarGPS();
 falar("Intelcar iniciada. Todos os sistemas ativos.");
 }
@@ -103,6 +137,7 @@ if(!(nome in estado))return;
 estado[nome]=!estado[nome];
 if(nome==="gps"){estado[nome]?iniciarGPS():pararGPS();}
 if(nome==="microfone"){estado[nome]?iniciarMicrofone():pararMicrofone();}
+atualizarLedsBotoes();
 falar(nome+" "+(estado[nome]?"ativo":"desligado"));
 }
 
