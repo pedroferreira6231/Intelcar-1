@@ -142,3 +142,15 @@ body {
   padding: 8px 10px;
   margin-left: 5px;
 }
+.ai-box {
+  display: none;
+  position: absolute;
+  z-index: 9999;
+  top: 120px;
+  left: 20px;
+  right: 20px;
+  background: black;
+  color: white;
+  padding: 15px;
+  border: 2px solid #00ff66;
+}
