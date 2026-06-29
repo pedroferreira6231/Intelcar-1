@@ -130,4 +130,29 @@ alert("Configurações Intelcar serão adicionadas depois.");
 function ativarSOS(){
 falar("Alerta SOS preparado. Confirma antes de chamar emergência.",true);
 alert("SOS será configurado numa próxima fase.");
+}function enviarPerguntaAI() {
+  const pergunta = document.getElementById("aiInput").value.trim();
+  if (!pergunta) return;
+
+  let resposta = "Ainda não sei responder a essa pergunta.";
+
+  if (pergunta.toLowerCase().includes("velocidade")) {
+    resposta = "A velocidade atual é " + velocidadeAtual + " quilómetros por hora.";
+  } else if (pergunta.toLowerCase().includes("destino")) {
+    resposta = estado.destino
+      ? "O destino atual é " + estado.destino + "."
+      : "Ainda não existe destino definido.";
+  }
+
+  document.getElementById("aiResposta").innerText = resposta;
+  falar(resposta);
+}
+
+function fecharAIBox() {
+  document.getElementById("aiBox").style.display = "none";
+}
+
+function abrirAIBox() {
+  document.getElementById("aiBox").style.display = "block";
+  document.getElementById("aiInput").focus();
 }
