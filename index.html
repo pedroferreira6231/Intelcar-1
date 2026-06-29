@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Intelcar 2.9.4</title>
+<title>Intelcar 2.9.5</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 <main id="app">
-  <img id="mockup" src="intelcar-oficial.jpg" alt="Intelcar 2.9.4">
+  <img id="mockup" src="intelcar-oficial.jpg" alt="Intelcar 2.9.5">
 
-  <button class="hotspot" id="btn-power" onclick="botaoPrincipal()" aria-label="Ligar ou desligar Intelcar"></button>
+  <button class="hotspot" id="btn-power" onclick="alternarTudo()" aria-label="Ligar ou desligar Intelcar"></button>
   <button class="hotspot" id="btn-ai" onclick="abrirPedidosEscritos()" aria-label="Pedidos por escrito Intelcar"></button>
   <button class="hotspot" id="btn-ai-plus" onclick="aiPlus()" aria-label="AI Plus"></button>
   <button class="hotspot" id="btn-microfone" onclick="alternarModulo('microfone')" aria-label="Microfone"></button>
@@ -28,8 +28,7 @@
   <button class="hotspot" id="btn-sos" onclick="ativarSOS()" aria-label="SOS"></button>
 
 
-
-  <!-- LEDs de estado: sobrepõem apenas o LED original da imagem -->
+  <!-- LEDs: apenas cobrem o LED original da imagem, sem texto novo -->
   <span class="led-dot" id="led-power"></span>
   <span class="led-dot" id="led-velocidade"></span>
   <span class="led-dot" id="led-microfone"></span>
