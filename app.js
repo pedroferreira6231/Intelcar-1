@@ -130,7 +130,8 @@ alert("Configurações Intelcar serão adicionadas depois.");
 function ativarSOS(){
 falar("Alerta SOS preparado. Confirma antes de chamar emergência.",true);
 alert("SOS será configurado numa próxima fase.");
-}function enviarPerguntaAI() {
+}
+function enviarPerguntaAI() {
   const pergunta = document.getElementById("aiInput").value.trim();
   if (!pergunta) return;
 
