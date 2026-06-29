@@ -19,7 +19,7 @@ window.addEventListener("load",()=>{
 log("Intelcar pronta. Sistemas ativos.");
 atualizarEstadoVisual();
 iniciarGPS();
-iniciarMicrofone();
+// Na versão web, o microfone pode exigir toque do utilizador.
 });
 
 function log(t){
@@ -95,7 +95,6 @@ estado.alertaMeteo=true;
 estado.alertaConducao=true;
 atualizarEstadoVisual();
 iniciarGPS();
-iniciarMicrofone();
 falar("Intelcar iniciada. Todos os sistemas ativos.");
 }
 
@@ -111,49 +110,109 @@ function falarVelocidade(){
 falar("Velocidade atual "+Math.round(estado.velocidadeAtual)+" quilómetros por hora.");
 }
 
-function falarAI(){
+function iniciarIntelcarAI(){
 if(estado.modoEspera){
-falar("Estou em modo de espera. Diz liga tudo para continuar.");
-return;
+ligarTudo();
 }
-falar("AI Intelcar ativa. Posso ajudar com a viagem.");
+estado.ai=true;
+if(estado.microfone){
+iniciarMicrofone();
+}
+falar("Intelcar AI normal ativa. Diz olá Intelcar ou faz a tua pergunta.");
+}
+
+function falarAI(){
+iniciarIntelcarAI();
 }
 
 function aiPlus(){
-falar("AI Plus será uma versão premium da Intelcar.");
+falar("AI Plus será uma versão premium da Intelcar. A inteligência normal abre no botão iniciar. Os pedidos por escrito ficam no logótipo Intelcar.");
 }
 
 function abrirConfiguracoes(){
-alert("Configurações Intelcar serão adicionadas depois.");
+const texto="Configurações Intelcar. Nesta fase podes ligar ou desligar módulos pelos botões ou por voz.";
+falar(texto);
+alert(texto);
 }
 
 function ativarSOS(){
 falar("Alerta SOS preparado. Confirma antes de chamar emergência.",true);
 alert("SOS será configurado numa próxima fase.");
 }
-function enviarPerguntaAI() {
-  const pergunta = document.getElementById("aiInput").value.trim();
-  if (!pergunta) return;
 
-  let resposta = "Ainda não sei responder a essa pergunta.";
-
-  if (pergunta.toLowerCase().includes("velocidade")) {
-  resposta = "A velocidade atual é " + Math.round(estado.velocidadeAtual) + " quilómetros por hora.";
-  } else if (pergunta.toLowerCase().includes("destino")) {
-    resposta = estado.destino
-      ? "O destino atual é " + estado.destino + "."
-      : "Ainda não existe destino definido.";
-  }
-
-  document.getElementById("aiResposta").innerText = resposta;
-  falar(resposta);
+function abrirPedidosEscritos(){
+abrirAIBox();
 }
 
-function fecharAIBox() {
-  document.getElementById("aiBox").style.display = "none";
+function abrirAIBox(){
+if(estado.modoEspera){
+falar("Estou em modo de espera. Diz liga tudo para continuar.");
+return;
+}
+const box=document.getElementById("aiBox");
+const input=document.getElementById("aiInput");
+const resposta=document.getElementById("aiResposta");
+if(!box)return;
+box.style.display="block";
+if(resposta)resposta.textContent="Pedidos por escrito. Escreve sobre velocidade, destino, GPS, mapas ou módulos.";
+falar("Pedidos por escrito abertos.");
+if(input)setTimeout(()=>input.focus(),200);
 }
 
-function abrirAIBox() {
-  document.getElementById("aiBox").style.display = "block";
-  document.getElementById("aiInput").focus();
+function fecharAIBox(){
+const box=document.getElementById("aiBox");
+if(box)box.style.display="none";
+}
+
+function enviarPerguntaAI(){
+const input=document.getElementById("aiInput");
+const respostaEl=document.getElementById("aiResposta");
+if(!input||!respostaEl)return;
+const pergunta=input.value.trim();
+if(!pergunta)return;
+const resposta=gerarRespostaAI(pergunta);
+respostaEl.textContent=resposta;
+input.value="";
+falar(resposta);
+}
+
+function responderAI(texto){
+const resposta=gerarRespostaAI(texto);
+const respostaEl=document.getElementById("aiResposta");
+if(respostaEl)respostaEl.textContent=resposta;
+falar(resposta);
+}
+
+function gerarRespostaAI(pergunta){
+const t=pergunta.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+if(t.includes("velocidade")){
+return "A velocidade atual é "+Math.round(estado.velocidadeAtual)+" quilómetros por hora.";
+}
+if(t.includes("destino")){
+return estado.destino?"O destino atual é "+estado.destino+".":"Ainda não existe destino definido. Diz destino seguido do local.";
+}
+if(t.includes("google maps")||t.includes("mapas")||t.includes("navegacao")){
+return estado.destino?"Posso abrir o Google Maps para "+estado.destino+".":"Define primeiro um destino para eu abrir o Google Maps.";
+}
+if(t.includes("gps")){
+return estado.gps?"O GPS interno está ativo.":"O GPS interno está desligado.";
+}
+if(t.includes("microfone")){
+return estado.microfone?"O microfone está ativo.":"O microfone está desligado.";
+}
+if(t.includes("alerta")){
+return "Os alertas de velocidade, distração, cansaço, meteo e condução perigosa podem ser ligados ou desligados pelos botões.";
+}
+if(t.includes("liga tudo")){
+ligarTudo();
+return "Todos os sistemas foram ligados.";
+}
+if(t.includes("desliga tudo")){
+desligarTudo();
+return "Intelcar em modo de espera.";
+}
+if(t.includes("ola")||t.includes("olá")){
+return "Estou aqui. Posso ajudar com velocidade, destino, GPS, mapas e alertas.";
+}
+return "Ainda estou em versão local. Posso responder sobre velocidade, destino, GPS, Google Maps, microfone e alertas.";
 }
