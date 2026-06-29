@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Intelcar 2.9</title>
+<title>Intelcar 2.9.4</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 <main id="app">
-  <img id="mockup" src="intelcar-oficial.jpg" alt="Intelcar 2.9">
+  <img id="mockup" src="intelcar-oficial.jpg" alt="Intelcar 2.9.4">
 
-  <button class="hotspot" id="btn-power" onclick="iniciarIntelcarAI()" aria-label="Iniciar Intelcar AI"></button>
+  <button class="hotspot" id="btn-power" onclick="botaoPrincipal()" aria-label="Ligar ou desligar Intelcar"></button>
   <button class="hotspot" id="btn-ai" onclick="abrirPedidosEscritos()" aria-label="Pedidos por escrito Intelcar"></button>
   <button class="hotspot" id="btn-ai-plus" onclick="aiPlus()" aria-label="AI Plus"></button>
   <button class="hotspot" id="btn-microfone" onclick="alternarModulo('microfone')" aria-label="Microfone"></button>
@@ -26,6 +26,22 @@
   <button class="hotspot" id="btn-alerta-conducao" onclick="alternarModulo('alertaConducao')" aria-label="Alerta condução perigosa"></button>
   <button class="hotspot" id="btn-config" onclick="abrirConfiguracoes()" aria-label="Configurações"></button>
   <button class="hotspot" id="btn-sos" onclick="ativarSOS()" aria-label="SOS"></button>
+
+
+
+  <!-- LEDs de estado: sobrepõem apenas o LED original da imagem -->
+  <span class="led-dot" id="led-power"></span>
+  <span class="led-dot" id="led-velocidade"></span>
+  <span class="led-dot" id="led-microfone"></span>
+  <span class="led-dot" id="led-destino"></span>
+  <span class="led-dot" id="led-gps"></span>
+  <span class="led-dot" id="led-maps"></span>
+  <span class="led-dot" id="led-ai-plus"></span>
+  <span class="led-dot" id="led-alerta-velocidade"></span>
+  <span class="led-dot" id="led-alerta-distracao"></span>
+  <span class="led-dot" id="led-alerta-cansaco"></span>
+  <span class="led-dot" id="led-alerta-meteo"></span>
+  <span class="led-dot" id="led-alerta-conducao"></span>
 
   <div class="status-pill" id="status-geral">ATIVO</div>
   <div class="speed-box" id="speedBox">0 km/h</div>
