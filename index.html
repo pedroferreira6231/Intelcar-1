@@ -3,40 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Intelcar 2.7</title>
+<title>Intelcar 2.8</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 <main id="app">
-  <img id="mockup" src="intelcar-oficial.jpg" alt="Intelcar 2.7">
+  <img id="mockup" src="intelcar-oficial.jpg" alt="Intelcar 2.8">
 
-  <button class="hotspot" id="btn-power" onclick="alternarTudo()"></button>
-  <button class="hotspot" id="btn-ai" onclick="alert('AI clicada'); abrirAIBox()"></button>
-
-  <button class="hotspot" id="btn-microfone" onclick="alternarModulo('microfone')"></button>
-  <button class="hotspot" id="btn-velocidade" onclick="falarVelocidade()"></button>
-  <button class="hotspot" id="btn-destino" onclick="definirDestinoManual()"></button>
-  <button class="hotspot" id="btn-gps" onclick="alternarModulo('gps')"></button>
-  <button class="hotspot" id="btn-maps" onclick="abrirGoogleMaps()"></button>
-  <button class="hotspot" id="btn-alerta-velocidade" onclick="alternarModulo('alertaVelocidade')"></button>
-  <button class="hotspot" id="btn-alerta-distracao" onclick="alternarModulo('alertaDistracao')"></button>
-  <button class="hotspot" id="btn-alerta-cansaco" onclick="alternarModulo('alertaCansaco')"></button>
-  <button class="hotspot" id="btn-alerta-meteo" onclick="alternarModulo('alertaMeteo')"></button>
-  <button class="hotspot" id="btn-alerta-conducao" onclick="alternarModulo('alertaConducao')"></button>
-  <button class="hotspot" id="btn-config" onclick="abrirConfiguracoes()"></button>
-  <button class="hotspot" id="btn-sos" onclick="ativarSOS()"></button>
+  <button class="hotspot" id="btn-power" onclick="iniciarIntelcarAI()" aria-label="Iniciar Intelcar AI"></button>
+  <button class="hotspot" id="btn-ai" onclick="abrirPedidosEscritos()" aria-label="Pedidos por escrito Intelcar"></button>
+  <button class="hotspot" id="btn-ai-plus" onclick="aiPlus()" aria-label="AI Plus"></button>
+  <button class="hotspot" id="btn-microfone" onclick="alternarModulo('microfone')" aria-label="Microfone"></button>
+  <button class="hotspot" id="btn-velocidade" onclick="falarVelocidade()" aria-label="Velocidade"></button>
+  <button class="hotspot" id="btn-destino" onclick="definirDestinoManual()" aria-label="Destino"></button>
+  <button class="hotspot" id="btn-gps" onclick="alternarModulo('gps')" aria-label="GPS interno"></button>
+  <button class="hotspot" id="btn-maps" onclick="abrirGoogleMaps()" aria-label="Google Maps"></button>
+  <button class="hotspot" id="btn-alerta-velocidade" onclick="alternarModulo('alertaVelocidade')" aria-label="Alerta velocidade"></button>
+  <button class="hotspot" id="btn-alerta-distracao" onclick="alternarModulo('alertaDistracao')" aria-label="Alerta distração"></button>
+  <button class="hotspot" id="btn-alerta-cansaco" onclick="alternarModulo('alertaCansaco')" aria-label="Alerta cansaço"></button>
+  <button class="hotspot" id="btn-alerta-meteo" onclick="alternarModulo('alertaMeteo')" aria-label="Alerta meteo"></button>
+  <button class="hotspot" id="btn-alerta-conducao" onclick="alternarModulo('alertaConducao')" aria-label="Alerta condução perigosa"></button>
+  <button class="hotspot" id="btn-config" onclick="abrirConfiguracoes()" aria-label="Configurações"></button>
+  <button class="hotspot" id="btn-sos" onclick="ativarSOS()" aria-label="SOS"></button>
 
   <div class="status-pill" id="status-geral">ATIVO</div>
   <div class="speed-box" id="speedBox">0 km/h</div>
   <div class="log-box" id="logBox">Intelcar pronta</div>
 
-  <div id="aiBox" class="ai-box">
-    <input id="aiInput" type="text" placeholder="Perguntar à Intelcar...">
-    <button onclick="enviarPerguntaAI()">Enviar</button>
-    <button onclick="fecharAIBox()">X</button>
-    <div id="aiResposta"></div>
-  </div>
+  <section id="aiBox" class="ai-box" aria-label="Assistente Intelcar">
+    <div class="ai-header">
+      <strong>Intelcar AI</strong>
+      <button class="ai-close" onclick="fecharAIBox()">X</button>
+    </div>
+    <div id="aiResposta" class="ai-resposta">Pergunta sobre velocidade, destino, GPS, mapas ou módulos.</div>
+    <div class="ai-input-row">
+      <input id="aiInput" type="text" placeholder="Perguntar à Intelcar..." onkeydown="if(event.key==='Enter')enviarPerguntaAI()">
+      <button onclick="enviarPerguntaAI()">Enviar</button>
+    </div>
+  </section>
 </main>
 
 <script src="app.js"></script>
