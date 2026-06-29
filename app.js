@@ -57,7 +57,6 @@ function atualizarLedsBotoes(){
 definirLed("btn-power",!estado.modoEspera&&estado.tudoLigado);
 definirLed("btn-microfone",estado.microfone);
 definirLed("btn-gps",estado.gps);
-definirLed("btn-ai-plus",estado.aiPlus);
 definirLed("btn-alerta-velocidade",estado.alertaVelocidade);
 definirLed("btn-alerta-distracao",estado.alertaDistracao);
 definirLed("btn-alerta-cansaco",estado.alertaCansaco);
@@ -83,8 +82,22 @@ window.speechSynthesis.speak(msg);
 log(texto);
 }
 
+function botaoPrincipal(){
+if(estado.modoEspera || !estado.tudoLigado){
+ligarTudo();
+estado.ai=true;
+atualizarEstadoVisual();
+if(estado.microfone){
+iniciarMicrofone();
+}
+falar("Intelcar ligada. AI normal ativa.");
+}else{
+desligarTudo();
+}
+}
+
 function alternarTudo(){
-if(estado.modoEspera){ligarTudo();}else{desligarTudo();}
+botaoPrincipal();
 }
 
 function desligarTudo(){
