@@ -182,3 +182,35 @@ html, body {
 .led-dot {
   display: none !important;
 }
+
+
+/* Pontos verdes antes de ATIVO em tamanho maior.
+   Estes pontos ficam por cima do ponto original da imagem,
+   sem voltar a criar as luzes extra dentro dos cartões. */
+.active-dot {
+  position: absolute;
+  width: clamp(14px, 2.4vw, 30px);
+  height: clamp(14px, 2.4vw, 30px);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #9cff70 0%, #39ff2f 45%, #00b820 100%);
+  box-shadow: 0 0 10px rgba(48,255,48,0.95), 0 0 20px rgba(48,255,48,0.45);
+  transform: translate(-50%, -50%);
+  z-index: 12;
+  pointer-events: none;
+}
+
+.dot-top { left: 2.55%; top: 6.9%; }
+.dot-power { left: 6.7%; top: 36.8%; }
+.dot-velocidade { left: 22.8%; top: 36.8%; }
+.dot-microfone { left: 39.6%; top: 36.8%; }
+.dot-destino { left: 55.8%; top: 36.8%; }
+.dot-gps { left: 72.5%; top: 36.8%; }
+.dot-maps { left: 88.4%; top: 36.8%; }
+.dot-ai-plus { left: 6.7%; top: 64.2%; }
+.dot-alerta-velocidade { left: 22.8%; top: 64.2%; }
+.dot-alerta-distracao { left: 39.6%; top: 64.2%; }
+.dot-alerta-cansaco { left: 55.8%; top: 64.2%; }
+.dot-alerta-meteo { left: 72.5%; top: 64.2%; }
+.dot-alerta-conducao { left: 88.4%; top: 64.2%; }
+.dot-config { left: 19.7%; top: 80.1%; }
+.dot-sos { left: 66.8%; top: 80.1%; }
