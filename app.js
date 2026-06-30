@@ -20,6 +20,10 @@ log("Intelcar pronta. Sistemas ativos.");
 atualizarEstadoVisual();
 atualizarLedsBotoes();
 iniciarGPS();
+// Ativa o sensor de movimento usado pelo alerta de condução perigosa.
+if(typeof iniciarSensorConducao==="function"){
+  iniciarSensorConducao(false);
+}
 // Tenta ativar o reconhecimento de voz assim que a Intelcar abre.
 setTimeout(()=>{
   if(estado.microfone && !estado.modoEspera){
@@ -137,6 +141,7 @@ estado.alertaConducao=true;
 atualizarEstadoVisual();
 atualizarLedsBotoes();
 iniciarGPS();
+if(typeof iniciarSensorConducao==="function"){iniciarSensorConducao(false);}
 if(estado.microfone){iniciarMicrofone();}
 falar("Intelcar iniciada. Todos os sistemas ativos.");
 }
@@ -161,6 +166,10 @@ if(
 estado[nome]=!estado[nome];
 if(nome==="gps"){estado[nome]?iniciarGPS():pararGPS();}
 if(nome==="microfone"){estado[nome]?iniciarMicrofone():pararMicrofone();}
+if(nome==="alertaConducao" && estado[nome] && typeof iniciarSensorConducao==="function"){
+  // Este toque também permite pedir autorização em aparelhos que a exigem.
+  iniciarSensorConducao(true);
+}
 atualizarLedsBotoes();
 falar(nome+" "+(estado[nome]?"ativo":"desligado"));
 }
