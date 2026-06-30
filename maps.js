@@ -20,7 +20,7 @@ falar("Define primeiro um destino.");
 alert("Define primeiro um destino.");
 return;
 }
-const url="https://www.google.com/maps/dir/?api=1&destination="+encodeURIComponent(destino)+"&travelmode=driving";
+const url="https://www.google.com/maps/dir/?api=1&destination="+encodeURIComponent(destino)+"&travelmode=driving&dir_action=navigate";
 window.location.href=url;
 }
 
