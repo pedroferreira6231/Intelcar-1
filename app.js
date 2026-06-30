@@ -20,7 +20,12 @@ log("Intelcar pronta. Sistemas ativos.");
 atualizarEstadoVisual();
 atualizarLedsBotoes();
 iniciarGPS();
-// Na versão web, o microfone pode exigir toque do utilizador.
+// Tenta ativar o reconhecimento de voz assim que a Intelcar abre.
+setTimeout(()=>{
+  if(estado.microfone && !estado.modoEspera){
+    iniciarMicrofone();
+  }
+},700);
 });
 
 function log(t){
@@ -132,11 +137,27 @@ estado.alertaConducao=true;
 atualizarEstadoVisual();
 atualizarLedsBotoes();
 iniciarGPS();
+if(estado.microfone){iniciarMicrofone();}
 falar("Intelcar iniciada. Todos os sistemas ativos.");
 }
 
 function alternarModulo(nome){
 if(!(nome in estado))return;
+
+// Se o LED do microfone está verde mas o reconhecimento ainda não arrancou,
+// o primeiro toque passa a ativá-lo em vez de o obrigar a desligar e ligar.
+if(
+  nome==="microfone" &&
+  estado.microfone &&
+  typeof microfoneEstaAtivo==="function" &&
+  !microfoneEstaAtivo()
+){
+  iniciarMicrofone();
+  atualizarLedsBotoes();
+  log("A ativar microfone...");
+  return;
+}
+
 estado[nome]=!estado[nome];
 if(nome==="gps"){estado[nome]?iniciarGPS():pararGPS();}
 if(nome==="microfone"){estado[nome]?iniciarMicrofone():pararMicrofone();}
