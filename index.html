@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Intelcar 2.9.5</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Intelcar 2.9.5</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 <main id="app">
   <img id="mockup" src="intelcar-oficial.jpg" alt="Intelcar 2.9.5">
@@ -19,34 +18,34 @@
   <button class="hotspot" id="btn-destino" onclick="definirDestinoManual()" aria-label="Destino"></button>
   <button class="hotspot" id="btn-gps" onclick="alternarModulo('gps')" aria-label="GPS interno"></button>
   <button class="hotspot" id="btn-maps" onclick="abrirGoogleMaps()" aria-label="Google Maps"></button>
+
   <button class="hotspot" id="btn-alerta-velocidade" onclick="alternarModulo('alertaVelocidade')" aria-label="Alerta velocidade"></button>
   <button class="hotspot" id="btn-alerta-distracao" onclick="alternarModulo('alertaDistracao')" aria-label="Alerta distração"></button>
   <button class="hotspot" id="btn-alerta-cansaco" onclick="alternarModulo('alertaCansaco')" aria-label="Alerta cansaço"></button>
   <button class="hotspot" id="btn-alerta-meteo" onclick="alternarModulo('alertaMeteo')" aria-label="Alerta meteo"></button>
   <button class="hotspot" id="btn-alerta-conducao" onclick="alternarModulo('alertaConducao')" aria-label="Alerta condução perigosa"></button>
+
   <button class="hotspot" id="btn-config" onclick="abrirConfiguracoes()" aria-label="Configurações"></button>
   <button class="hotspot" id="btn-sos" onclick="ativarSOS()" aria-label="SOS"></button>
 
+  <!-- LEDs sobrepostos: agora têm IDs para o JavaScript mudar verde/vermelho. -->
+  <div id="led-top" class="active-dot dot-top"></div>
+  <div id="led-power" class="active-dot dot-power"></div>
+  <div id="led-velocidade" class="active-dot dot-velocidade"></div>
+  <div id="led-microfone" class="active-dot dot-microfone"></div>
+  <div id="led-destino" class="active-dot dot-destino"></div>
+  <div id="led-gps" class="active-dot dot-gps"></div>
+  <div id="led-maps" class="active-dot dot-maps"></div>
 
-  <!-- LEDs extra removidos: fica apenas o ponto verde original antes de ATIVO na imagem. -->
+  <div id="led-ai-plus" class="active-dot dot-ai-plus"></div>
+  <div id="led-alerta-velocidade" class="active-dot dot-alerta-velocidade"></div>
+  <div id="led-alerta-distracao" class="active-dot dot-alerta-distracao"></div>
+  <div id="led-alerta-cansaco" class="active-dot dot-alerta-cansaco"></div>
+  <div id="led-alerta-meteo" class="active-dot dot-alerta-meteo"></div>
+  <div id="led-alerta-conducao" class="active-dot dot-alerta-conducao"></div>
 
-  <!-- Luz verde original antes de ATIVO aumentada: sobreposta exatamente no mesmo ponto, sem criar segunda luz. -->
-  <div class="active-dot dot-top"></div>
-  <div class="active-dot dot-power"></div>
-  <div class="active-dot dot-velocidade"></div>
-  <div class="active-dot dot-microfone"></div>
-  <div class="active-dot dot-destino"></div>
-  <div class="active-dot dot-gps"></div>
-  <div class="active-dot dot-maps"></div>
-  <div class="active-dot dot-ai-plus"></div>
-  <div class="active-dot dot-alerta-velocidade"></div>
-  <div class="active-dot dot-alerta-distracao"></div>
-  <div class="active-dot dot-alerta-cansaco"></div>
-  <div class="active-dot dot-alerta-meteo"></div>
-  <div class="active-dot dot-alerta-conducao"></div>
-  <div class="active-dot dot-config"></div>
-  <div class="active-dot dot-sos"></div>
-
+  <div id="led-config" class="active-dot dot-config"></div>
+  <div id="led-sos" class="active-dot dot-sos"></div>
 
   <div class="status-pill" id="status-geral">ATIVO</div>
   <div class="speed-box" id="speedBox">0 km/h</div>
