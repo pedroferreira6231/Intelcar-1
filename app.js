@@ -53,20 +53,30 @@ function definirLed(id, ligado){
 }
 
 function atualizarLedsBotoes(){
-  definirLed("led-power", !estado.modoEspera && estado.tudoLigado);
-  definirLed("led-microfone", estado.microfone && !estado.modoEspera);
-  definirLed("led-gps", estado.gps && !estado.modoEspera);
-  definirLed("led-alerta-velocidade", estado.alertaVelocidade && !estado.modoEspera);
-  definirLed("led-alerta-distracao", estado.alertaDistracao && !estado.modoEspera);
-  definirLed("led-alerta-cansaco", estado.alertaCansaco && !estado.modoEspera);
-  definirLed("led-alerta-meteo", estado.alertaMeteo && !estado.modoEspera);
-  definirLed("led-alerta-conducao", estado.alertaConducao && !estado.modoEspera);
+  const sistemaAtivo = !estado.modoEspera;
 
-  // Estes botões são de ação, não ligam/desligam módulo. Ficam verdes.
-  definirLed("led-velocidade", true);
-  definirLed("led-destino", true);
-  definirLed("led-maps", true);
-  definirLed("led-ai-plus", true);
+  // Indicador geral e botão principal.
+  definirLed("led-top", sistemaAtivo);
+  definirLed("led-power", sistemaAtivo && estado.tudoLigado);
+
+  // Interruptores individuais.
+  definirLed("led-microfone", sistemaAtivo && estado.microfone);
+  definirLed("led-gps", sistemaAtivo && estado.gps);
+  definirLed("led-alerta-velocidade", sistemaAtivo && estado.alertaVelocidade);
+  definirLed("led-alerta-distracao", sistemaAtivo && estado.alertaDistracao);
+  definirLed("led-alerta-cansaco", sistemaAtivo && estado.alertaCansaco);
+  definirLed("led-alerta-meteo", sistemaAtivo && estado.alertaMeteo);
+  definirLed("led-alerta-conducao", sistemaAtivo && estado.alertaConducao);
+
+  // Botões de ação: verdes com o sistema ligado e vermelhos em modo de espera.
+  definirLed("led-velocidade", sistemaAtivo);
+  definirLed("led-destino", sistemaAtivo);
+  definirLed("led-maps", sistemaAtivo);
+  definirLed("led-ai-plus", sistemaAtivo);
+  definirLed("led-config", sistemaAtivo);
+
+  // O SOS ainda não está configurado, por isso permanece desligado/vermelho.
+  definirLed("led-sos", false);
 }
 
 function falar(texto,urgente=false){
