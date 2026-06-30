@@ -184,9 +184,9 @@ html, body {
 }
 
 
-/* Pontos verdes antes de ATIVO em tamanho maior.
-   Estes pontos ficam por cima do ponto original da imagem,
-   sem voltar a criar as luzes extra dentro dos cartões. */
+/* Luz verde antes de ATIVO em tamanho maior.
+   A bolinha fica centrada em cima da luz original pequena,
+   para parecer uma única luz maior — não duas luzes. */
 .active-dot {
   position: absolute;
   width: clamp(14px, 2.4vw, 30px);
@@ -199,18 +199,18 @@ html, body {
   pointer-events: none;
 }
 
-.dot-top { left: 2.55%; top: 6.9%; }
-.dot-power { left: 6.7%; top: 36.8%; }
-.dot-velocidade { left: 22.8%; top: 36.8%; }
-.dot-microfone { left: 39.6%; top: 36.8%; }
-.dot-destino { left: 55.8%; top: 36.8%; }
-.dot-gps { left: 72.5%; top: 36.8%; }
-.dot-maps { left: 88.4%; top: 36.8%; }
-.dot-ai-plus { left: 6.7%; top: 64.2%; }
-.dot-alerta-velocidade { left: 22.8%; top: 64.2%; }
-.dot-alerta-distracao { left: 39.6%; top: 64.2%; }
-.dot-alerta-cansaco { left: 55.8%; top: 64.2%; }
-.dot-alerta-meteo { left: 72.5%; top: 64.2%; }
-.dot-alerta-conducao { left: 88.4%; top: 64.2%; }
-.dot-config { left: 19.7%; top: 80.1%; }
-.dot-sos { left: 66.8%; top: 80.1%; }
+.dot-top { left: 5.9%; top: 7.2%; }
+.dot-power { left: 6.8%; top: 39.3%; }
+.dot-velocidade { left: 23.1%; top: 39.3%; }
+.dot-microfone { left: 39.35%; top: 39.3%; }
+.dot-destino { left: 55.45%; top: 39.3%; }
+.dot-gps { left: 71.35%; top: 39.3%; }
+.dot-maps { left: 88.05%; top: 39.3%; }
+.dot-ai-plus { left: 6.8%; top: 66.0%; }
+.dot-alerta-velocidade { left: 23.1%; top: 66.0%; }
+.dot-alerta-distracao { left: 39.35%; top: 66.0%; }
+.dot-alerta-cansaco { left: 55.45%; top: 66.0%; }
+.dot-alerta-meteo { left: 71.35%; top: 66.0%; }
+.dot-alerta-conducao { left: 88.05%; top: 66.0%; }
+.dot-config { left: 19.6%; top: 81.4%; }
+.dot-sos { left: 66.8%; top: 81.4%; }
