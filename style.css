@@ -176,37 +176,9 @@ html, body {
   font-size: 14px;
 }
 
-/* Intelcar 2.9.5 — LED original maior e verde/vermelho
-   Só cobre o LED pequeno que já existe na imagem. Não cria texto novo. */
+/* LEDs extra removidos.
+   A aplicação deixa de desenhar pontos por cima dos cartões.
+   Fica apenas o ponto verde original antes da palavra ATIVO. */
 .led-dot {
-  position: absolute;
-  width: 1.85%;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  background: #00ff55;
-  box-shadow: 0 0 9px rgba(0,255,80,1), 0 0 3px rgba(255,255,255,0.75) inset;
-  z-index: 35;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
+  display: none !important;
 }
-
-.led-dot.off {
-  background: #ff1616;
-  box-shadow: 0 0 10px rgba(255,0,0,1), 0 0 3px rgba(255,255,255,0.65) inset;
-}
-
-/* Primeira linha — sobre o LED original antes de ATIVO */
-#led-power { left: 11.0%; top: 35.9%; }
-#led-velocidade { left: 28.0%; top: 35.9%; }
-#led-microfone { left: 44.6%; top: 35.9%; }
-#led-destino { left: 60.8%; top: 35.9%; }
-#led-gps { left: 73.8%; top: 35.9%; }
-#led-maps { left: 90.2%; top: 35.9%; }
-
-/* Segunda linha — sobre o LED original antes de ATIVO */
-#led-ai-plus { left: 11.0%; top: 64.1%; }
-#led-alerta-velocidade { left: 28.0%; top: 64.1%; }
-#led-alerta-distracao { left: 44.6%; top: 64.1%; }
-#led-alerta-cansaco { left: 60.8%; top: 64.1%; }
-#led-alerta-meteo { left: 73.8%; top: 64.1%; }
-#led-alerta-conducao { left: 90.2%; top: 64.1%; }
