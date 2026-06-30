@@ -1,37 +1,69 @@
 let recognition=null;
+let microfoneAReconhecer=false;
+let temporizadorReinicioMicrofone=null;
+
+function microfoneEstaAtivo(){
+return microfoneAReconhecer;
+}
 
 function iniciarMicrofone(){
-if(!estado.microfone)return;
+if(!estado.microfone||estado.modoEspera)return;
 const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
 if(!SpeechRecognition){
 log("Reconhecimento de voz não suportado neste navegador.");
 return;
 }
-if(recognition)return;
-recognition=new SpeechRecognition();
-recognition.lang="pt-PT";
-recognition.continuous=true;
-recognition.interimResults=false;
-recognition.onresult=e=>{
+if(recognition||microfoneAReconhecer)return;
+
+const atual=new SpeechRecognition();
+recognition=atual;
+atual.lang="pt-PT";
+atual.continuous=true;
+atual.interimResults=false;
+
+atual.onstart=()=>{
+microfoneAReconhecer=true;
+log("Microfone ativo.");
+};
+
+atual.onresult=e=>{
 const texto=e.results[e.results.length-1][0].transcript;
 processarComando(texto);
 };
-recognition.onerror=e=>{log("Erro microfone: "+e.error);};
-recognition.onend=()=>{
-recognition=null;
-if(estado.microfone){setTimeout(iniciarMicrofone,800);}
+
+atual.onerror=e=>{
+if(e.error!=="no-speech"){
+log("Erro microfone: "+e.error);
+}
 };
+
+atual.onend=()=>{
+if(recognition===atual)recognition=null;
+microfoneAReconhecer=false;
+if(estado.microfone&&!estado.modoEspera){
+clearTimeout(temporizadorReinicioMicrofone);
+temporizadorReinicioMicrofone=setTimeout(iniciarMicrofone,800);
+}
+};
+
 try{
-recognition.start();
-log("Microfone ativo.");
+atual.start();
 }catch(e){
+if(recognition===atual)recognition=null;
+microfoneAReconhecer=false;
 log("Microfone bloqueado ou já ativo.");
 }
 }
 
 function pararMicrofone(){
-if(recognition){try{recognition.stop();}catch(e){}}
+clearTimeout(temporizadorReinicioMicrofone);
+temporizadorReinicioMicrofone=null;
+const atual=recognition;
 recognition=null;
+microfoneAReconhecer=false;
+if(atual){
+try{atual.onend=null;atual.stop();}catch(e){}
+}
 log("Microfone parado.");
 }
 
